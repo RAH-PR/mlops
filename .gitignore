@@ -1,0 +1,11 @@
+# Python bytecode files
+__pycache__/
+*.pyc
+
+# Jupyter notebook checkpoints
+.ipynb_checkpoints/
+
+# IDE-specific files
+.vscode/
+
+
