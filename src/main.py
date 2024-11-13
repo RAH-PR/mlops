@@ -21,9 +21,9 @@ DEFAULT_HYPERPARAMS = {
     'eval_batch_size': 32,
     'use_cyclic_lr': False,
     'base_lr': 1e-5,
-    'max_lr': 1e-1,
-    'step_size_up': 100000,
-    'step_size_down': 100000
+    'max_lr': 1e-4,
+    'step_size_up': 100,
+    'step_size_down': 100
 }
 def parse_args():
     """
