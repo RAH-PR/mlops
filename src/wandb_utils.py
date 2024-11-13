@@ -21,7 +21,7 @@ def construct_experiment_name(hyperparams, full_hyperparams):
     timestamp = datetime.now().strftime("%Y%m%d-%H%M%S")
     return f"{timestamp}_{full_hyperparams['model_name']}_{full_hyperparams['task_name']}_{hyperparam_string}"
 
-def setup_wandb(full_hyperparams, filtered_hyperparams, model_name, task_name, project_name, base_dir='mlops'):
+def setup_wandb(full_hyperparams, filtered_hyperparams, model_name, task_name, project_name, output_dir):
     """
     Set up WandB logging and checkpointing for an experiment with the given hyperparameters.
     """
@@ -30,7 +30,7 @@ def setup_wandb(full_hyperparams, filtered_hyperparams, model_name, task_name, p
     wandb_experiment_name = experiment_name.replace("/", "-")
     #wandb_hyperparam_string = "/".join([str(value) for value in filtered_hyperparams.values()]).replace("/", "-")
     
-    folder_structure = os.path.join('../logs/', experiment_name)
+    folder_structure = os.path.join(output_dir, experiment_name)
     
     log_dir = create_directories(os.path.join(folder_structure, 'wandb_logs'))
     checkpoint_dir = create_directories(os.path.join(folder_structure, 'checkpoints'))
