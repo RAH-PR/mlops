@@ -1,17 +1,16 @@
-FROM continuumio/miniconda3:latest AS base
+FROM python:3.12
 
 WORKDIR /code
 
-COPY environment.yml /code/
+COPY requirements.txt /code/
 
-RUN conda env create -f environment.yml
+RUN pip install --upgrade pip 
+RUN pip install torch --index-url https://download.pytorch.org/whl/cpu
+RUN pip install torchvision --index-url https://download.pytorch.org/whl/cpu
+RUN pip install -r /code/requirements.txt 
 
-ENV PATH /opt/miniconda3/envs/mlops/bin:$PATH
-
-SHELL ["conda", "run", "-n", "mlops", "/bin/bash", "-c"]
-
-RUN conda list
+COPY ./src /code/src
 
 WORKDIR /code/src
 
-CMD ["conda", "run", "-n", "mlops", "python", "/code/src/main.py", "--use_cyclic_lr", "True", "--max_lr", "1e-3", "--step_size_up", "100_000", "--step_size_down", "100_000"]
+CMD ["python", "main.py", "--use_cyclic_lr", "True", "--max_lr", "1e-3", "--step_size_up", "100_000", "--step_size_down", "100_000"]
