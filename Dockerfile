@@ -12,4 +12,6 @@ SHELL ["conda", "run", "-n", "mlops", "/bin/bash", "-c"]
 
 RUN conda list
 
-CMD ["conda", "run", "-n", "mlops", "python", "main.py", "--use_cyclic_lr", "True", "--max_lr", "1e-3", "--step_size_up", "100_000", "--step_size_down", "100_000"]
+WORKDIR /code/src
+
+CMD ["conda", "run", "-n", "mlops", "python", "/code/src/main.py", "--use_cyclic_lr", "True", "--max_lr", "1e-3", "--step_size_up", "100_000", "--step_size_down", "100_000"]
