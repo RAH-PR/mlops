@@ -12,7 +12,7 @@ This repository contains the code and a dockerized setup to train distilbert-bas
 1. **Clone repository**
 
    ```bash
-   git clone <repository-url>
+   git clone https://github.com/RAH-PR/mlop
    cd mlops  
    ```
 
@@ -23,7 +23,7 @@ This repository contains the code and a dockerized setup to train distilbert-bas
    ```
 
 3. **Run container**  
-Run the container and passing in your wandb API key. This command maps the src and logs directories to the container, allowing the model code to be accessible and logs to be saved.
+Run the container and passing in your wandb API key. This command maps the src and logs directories to the container, allowing the code to be accessible and logs to be saved.
 
    ```bash
    docker run --rm -v $(pwd)/src:/code/src -v $(pwd)/logs:/code/logs -e WANDB_API_KEY=<YOUR_API_KEY> mlops-container
